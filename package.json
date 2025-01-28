@@ -1,5 +1,5 @@
 {
-  "name": "blogs-vue3",
+  "name": "blog",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,6 +12,16 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "vitepress": "^1.6.3"
+    "@algolia/client-search": ">=4.9.1 <6.0.0",
+    "search-insights": ">=1.0.0 <3.0.0",
+    "vitepress": "^1.2.3"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search",
+        "search-insights"
+      ]
+    }
   }
 }
