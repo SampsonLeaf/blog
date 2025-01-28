@@ -1,7 +1,9 @@
 import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
+const base = "/blog/";
 export default defineConfig({
+  base,
   title: "Sampson Ye 's Blog",
   description: "A VitePress Site",
   themeConfig: {
