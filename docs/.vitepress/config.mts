@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
-const base = "/blog/";
+const base = "/";
 export default defineConfig({
   base,
   title: "Sampson Ye 's Blog",
@@ -27,7 +27,7 @@ export default defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
     ],
-    logo: '../public/logo.png'
+    logo: '../public/pig.png'
 
   }
 })
