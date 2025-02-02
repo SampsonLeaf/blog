@@ -6,7 +6,7 @@ hero:
   name: "Sampson的博客"
   text: "博客为工作日常积累"
   tagline: 网站编程内容有点杂乱，仅供个人使用，欢迎大家交流学习
-  image: ./public/person.webp
+  image: /person.webp
   actions:
     - theme: brand
       text: 进入学习
