@@ -127,6 +127,8 @@ function initGraph() {
   layout: {
     type: null,
   },
+   // 启用历史记录
+  enabledStack: true,
   behaviors: ['drag-element', 'drag-canvas', 'zoom-canvas'],
   plugins: [
     {
@@ -135,8 +137,20 @@ function initGraph() {
     },
   ],
 });
+// data.nodes = updateNodePositions(data.nodes);  // 添加这行
 graph.setData(data);
 graph.render();
+}
+
+function updateNodePositions(nodes) {
+  return nodes.map(node => ({
+    ...node,
+    x: node.style.x,
+    y: node.style.y,
+    style: {
+      ...node.style
+    }
+  }));
 }
 
 function handleContextMenuAction(action, nodeId) {
@@ -190,7 +204,7 @@ function handleContextMenuAction(action, nodeId) {
       });
     }
     console.log('graphData2', graphData)
-    graph.clear();
+    // graph.clear();
     graph.setData(graphData);
     graph.render();
     return;
@@ -275,8 +289,9 @@ function handleContextMenuAction(action, nodeId) {
   // 重新排列所有节点位置
   graphData.nodes = arrangeNodesPosition(graphData.nodes);
   graphData.edges = arrangeEdges(graphData.nodes);
+  graphData.nodes = updateNodePositions(graphData.nodes);  // 添加这行
 
-  graph.clear();
+  // graph.clear();
   graph.setData(graphData);
   graph.render();
 }
@@ -336,6 +351,7 @@ const handleUndo = () => {
 
 const handleRedo = () => {
   const history = graph.getPluginInstance('history');
+  console.log('history', history)
   if (history.canRedo()) history.redo();
 };
 
@@ -378,6 +394,7 @@ const changeNodeColor = (status) => {
   
 // 重新排列所有节点位置
  graphData.nodes = arrangeNodesPosition(graphData.nodes);
+ graphData.nodes = updateNodePositions(graphData.nodes);  // 添加这行
 
   graph.setData(graphData);
   graph.render();
@@ -551,7 +568,10 @@ onMounted(() => {
   // 重置状态
   dragStartNode = null;
   currentPosition = null;
-  graph.clear();
+    // 更新所有节点的位置
+    graphData.nodes = updateNodePositions(graphData.nodes);
+  console.log('graphData', graphData)
+  // graph.clear();
   graph.setData(graphData);
   graph.render();
 });
